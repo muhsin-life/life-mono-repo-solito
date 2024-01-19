@@ -10,9 +10,9 @@ const nextConfig = {
   reactStrictMode: false,
   images: {
     domains: [
-      "www.lifepharmacy.com",
-      "life-cdn.lifepharmacy.com",
-      "lifeadmin-app.s3.me-south-1.amazonaws.com",
+      'www.lifepharmacy.com',
+      'life-cdn.lifepharmacy.com',
+      'lifeadmin-app.s3.me-south-1.amazonaws.com',
     ],
   },
   transpilePackages: [
@@ -27,8 +27,9 @@ const nextConfig = {
     'react-native-gesture-handler',
     'react-native-easy-grid',
     'react-native-svg',
-    'react-native-feather', 
+    'react-native-feather',
     'react-native-reanimated-carousel',
+    'react-native-web-swiper',
   ],
 }
 

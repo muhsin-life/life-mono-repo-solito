@@ -2,7 +2,7 @@ import { Content } from 'app/types/page'
 import { View } from 'app/design/view'
 import { cn } from 'app/lib/utils'
 import { Platform } from 'react-native'
-import { NativeCarousel } from './native/Carousel'
+import { ReactNativeSwiper } from './native/Carousel'
 
 interface DynamicSliderProps {
   contentData: Content
@@ -17,7 +17,7 @@ export const DynamicSliderGrid = ({
 }: DynamicSliderProps) => {
   const getPlatformSpecificCarousels = () => {
     if (['ios', 'android'].includes(platform)) {
-      return <NativeCarousel contentData={contentData} />
+      return <ReactNativeSwiper />
     } else {
       return (
         <View>
