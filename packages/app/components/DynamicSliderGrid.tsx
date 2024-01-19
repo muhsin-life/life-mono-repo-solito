@@ -1,13 +1,13 @@
-import { Content } from "app/types/page";
-import { View } from "app/design/view";
-import { cn } from "app/lib/utils";
-import { Carousel } from "./Carousel";
-import { Platform } from "react-native";
+import { Content } from 'app/types/page'
+import { View } from 'app/design/view'
+import { cn } from 'app/lib/utils'
+import { Platform } from 'react-native'
+import { NativeCarousel } from './native/Carousel'
 
 interface DynamicSliderProps {
-  contentData: Content;
-  deviceType: SupportedDeviceType;
-  platform: Platform["OS"];
+  contentData: Content
+  deviceType: SupportedDeviceType
+  platform: Platform['OS']
 }
 
 export const DynamicSliderGrid = ({
@@ -16,33 +16,27 @@ export const DynamicSliderGrid = ({
   platform,
 }: DynamicSliderProps) => {
   const getPlatformSpecificCarousels = () => {
-    if (["ios", "android"].includes(platform)) {
-      return <NativeCarousel />;
+    if (['ios', 'android'].includes(platform)) {
+      return <NativeCarousel contentData={contentData} />
     } else {
-      return <WebSwiper />;
+      return (
+        <View>
+          {/* <WebSwiper deviceType={deviceType} contentData={contentData} /> */}
+        </View>
+      )
     }
-  };
+  }
 
   return (
     contentData.section_data_array && (
       <View
-        className={cn("w-full items-center", {
-          "sm:hidden block": deviceType === "mobile",
-          "sm:block hidden": deviceType === "desktop",
+        className={cn('w-full items-center', {
+          'sm:hidden block': deviceType === 'mobile',
+          'sm:block hidden': deviceType === 'desktop',
         })}
       >
         {getPlatformSpecificCarousels()}
       </View>
     )
-  );
-};
-
-interface CarouselProps {}
-
-const WebSwiper = ({}: CarouselProps) => {
-  return <View></View>;
-};
-
-const NativeCarousel = ({}: CarouselProps) => {
-  return <View></View>;
-};
+  )
+}

@@ -1,59 +1,64 @@
-import { Content } from "app/types/page";
-import MaxWidthWrapper from "./MaxWidthWrapper";
-import { SolitoImage } from "solito/image";
-import { Col, Row, Grid } from "react-native-easy-grid";
-import { DynamicGrid } from "./DynamicGrid";
-import { DynamicSliderGrid } from "./DynamicSliderGrid";
+import { Content } from 'app/types/page'
+import MaxWidthWrapper from './MaxWidthWrapper'
+import { DynamicGrid } from './DynamicGrid'
+import { DynamicSliderGrid } from './DynamicSliderGrid'
+import { Platform } from 'react-native'
+import { ReactNode } from 'react'
 
 interface PageStructureProps {
-  content: Content;
+  content: Content
+  children: ReactNode
 }
 
 export const PageStructure = ({ content }: PageStructureProps) => {
-  const isHideInMobile = content.settings?.hide_in_mobile_web ?? false;
-  const isHideInDesktop = content.settings?.hide_in_desktop_web ?? false;
+  const isHideInMobile = content.settings?.hide_in_mobile_web ?? false
+  const isHideInDesktop = content.settings?.hide_in_desktop_web ?? false
 
   const getPageComponent = (
-    supportedDeviceTypes: SupportedDeviceType[] | null
+    supportedDeviceTypes: SupportedDeviceType[] | null,
   ) => {
     switch (content.section_type) {
-      case "dynamic_grid":
+      case 'dynamic_grid':
         return supportedDeviceTypes?.map((deviceType) => {
           return (
             <MaxWidthWrapper key={`${content.order_id}-${deviceType}`}>
               <DynamicGrid contentData={content} deviceType={deviceType} />
             </MaxWidthWrapper>
-          );
-        });
-      case "dynamic_slider_grid":
+          )
+        })
+      case 'dynamic_slider_grid':
         return supportedDeviceTypes?.map((deviceType) => {
           return (
             <MaxWidthWrapper key={`${content.order_id}-${deviceType}`}>
-              <DynamicSliderGrid contentData={content} deviceType={deviceType} />
+              <DynamicSliderGrid
+                contentData={content}
+                deviceType={deviceType}
+                platform={Platform.OS}
+              />
             </MaxWidthWrapper>
-          );
-        });
+          )
+        })
 
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   const getSupportedDevicetypes = (): SupportedDeviceType[] | null => {
     if (isHideInDesktop === true && isHideInMobile === true) {
-      return null;
+      return null
     } else if (isHideInDesktop === true && isHideInMobile === false) {
-      return ["mobile"];
+      return ['mobile']
     } else if (isHideInDesktop === false && isHideInMobile === true) {
-      return ["desktop"];
+      return ['desktop']
     } else {
-      return ["mobile", "desktop"];
+      return ['mobile', 'desktop']
     }
-  };
+  }
 
   return getSupportedDevicetypes() !== null ? (
     getPageComponent(getSupportedDevicetypes())
   ) : (
     <></>
-  );
-};
+  )
+}

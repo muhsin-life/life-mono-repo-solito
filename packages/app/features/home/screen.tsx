@@ -4,25 +4,25 @@ import { View } from 'app/design/view'
 import { PageData } from 'app/types/page'
 import { ScrollView } from 'moti'
 
-interface HomePageProps{
-  data:PageData
-  }
+interface HomePageProps {
+  data: PageData
+}
 
-export function HomeScreen({data}:HomePageProps) {
+export function HomeScreen({ data }: HomePageProps) {
   return (
-  <View className={"flex-1 bg-white"}>
-  <Navbar/>
-  <ScrollView
-  horizontal={false}
-  style={{
-    backgroundColor:"white", 
-    flex:1
-  }}
-    >
-        {data.content.map((content)=>(
-        <PageStructure content={content} key={content.order_id}/>
-          ))}
-              </ScrollView>
-          </View>
+    <View className={'flex-1 bg-white'}>
+      <Navbar />
+      <ScrollView
+        horizontal={false}
+        style={{
+          backgroundColor: 'white',
+          flex: 1,
+        }}
+      >
+        {data.content.map((content) => (
+          <PageStructure content={content} key={content.order_id} />
+        ))}
+      </ScrollView>
+    </View>
   )
 }

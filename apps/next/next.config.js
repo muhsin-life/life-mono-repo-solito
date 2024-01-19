@@ -28,7 +28,7 @@ const nextConfig = {
     'react-native-easy-grid',
     'react-native-svg',
     'react-native-feather', 
-    'react-native-reanimated-carousel'
+    'react-native-reanimated-carousel',
   ],
 }
 
