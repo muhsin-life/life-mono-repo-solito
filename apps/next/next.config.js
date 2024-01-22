@@ -30,6 +30,7 @@ const nextConfig = {
     'react-native-feather',
     'react-native-reanimated-carousel',
     'react-native-web-swiper',
+    'react-native-heroicons'
   ],
 }
 

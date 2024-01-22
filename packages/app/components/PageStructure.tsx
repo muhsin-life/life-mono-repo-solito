@@ -7,7 +7,6 @@ import { ReactNode } from 'react'
 
 interface PageStructureProps {
   content: Content
-  children: ReactNode
 }
 
 export const PageStructure = ({ content }: PageStructureProps) => {

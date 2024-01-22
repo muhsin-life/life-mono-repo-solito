@@ -67,8 +67,8 @@
 //   )
 // }
 
+import { window } from 'app/lib/utils'
 import { Text, View } from 'react-native'
-import Swiper from 'react-native-web-swiper'
 
 type Props = {
   index?: number
@@ -82,12 +82,8 @@ export const SomeSlide = (props: Props) => (
   </View>
 )
 
+const PAGE_WIDTH = window.width
+
 export const ReactNativeSwiper = () => {
-  return (
-    <Swiper>
-      
-      <SomeSlide />
-      <SomeSlide />
-    </Swiper>
-  )
+  return <View></View>
 }

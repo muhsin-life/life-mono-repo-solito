@@ -1,5 +1,4 @@
 import { Content } from 'app/types/page'
-import { Col, Grid } from 'react-native-easy-grid'
 import { View } from 'app/design/view'
 import { GridImage } from './GridImage'
 import { cn, getImageAspectRatio } from 'app/lib/utils'
@@ -20,6 +19,8 @@ export const DynamicGrid = ({
       contentData.section_data_array[0]?.[deviceType].height,
   })
 
+
+
   return (
     contentData.section_data_array && (
       <View
@@ -28,20 +29,20 @@ export const DynamicGrid = ({
           'sm:block hidden': deviceType === 'desktop',
         })}
       >
-        <Grid>
+        <View className="flex-row flex-1">
           {contentData.section_data_array.map(
             (content) =>
               content[deviceType].image_url && (
-                <Col key={content.id}>
+                <View key={content.id} className="flex-col flex-1">
                   <GridImage
                     sectionData={content}
                     deviceType={deviceType}
                     imageAspectRatio={imageAspectRatio}
                   />
-                </Col>
+                </View>
               ),
           )}
-        </Grid>
+        </View>
       </View>
     )
   )

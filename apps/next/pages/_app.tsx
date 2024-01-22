@@ -1,63 +1,64 @@
-import "raf/polyfill";
-import "setimmediate";
+import 'raf/polyfill'
+import 'setimmediate'
 
-import { Provider } from "app/provider";
-import Head from "next/head";
-import React from "react";
+import { Provider } from 'app/provider'
+import Head from 'next/head'
+import React from 'react'
 
-import "../global.css";
-import { AppProps } from "next/app";
-import localFont from "next/font/local";
+import '../global.css'
+import { AppProps } from 'next/app'
+import localFont from 'next/font/local'
+import TabsLayout from 'app/navigation/TabsLayout'
 
 const poppins = localFont({
   src: [
     {
-      path: "../public/font/Poppins/Poppins-Black.ttf",
-      style: "normal",
-      weight: "400",
+      path: '../public/font/Poppins/Poppins-Black.ttf',
+      style: 'normal',
+      weight: '400',
     },
     {
-      path: "../public/font/Poppins/Poppins-Bold.ttf",
-      style: "normal",
-      weight: "700",
+      path: '../public/font/Poppins/Poppins-Bold.ttf',
+      style: 'normal',
+      weight: '700',
     },
     {
-      path: "../public/font/Poppins/Poppins-ExtraBold.ttf",
-      style: "normal",
-      weight: "800",
+      path: '../public/font/Poppins/Poppins-ExtraBold.ttf',
+      style: 'normal',
+      weight: '800',
     },
     {
-      path: "../public/font/Poppins/Poppins-ExtraLight.ttf",
-      style: "normal",
-      weight: "200",
+      path: '../public/font/Poppins/Poppins-ExtraLight.ttf',
+      style: 'normal',
+      weight: '200',
     },
     {
-      path: "../public/font/Poppins/Poppins-Light.ttf",
-      style: "normal",
-      weight: "300",
+      path: '../public/font/Poppins/Poppins-Light.ttf',
+      style: 'normal',
+      weight: '300',
     },
     {
-      path: "../public/font/Poppins/Poppins-Medium.ttf",
-      style: "normal",
-      weight: "500",
+      path: '../public/font/Poppins/Poppins-Medium.ttf',
+      style: 'normal',
+      weight: '500',
     },
     {
-      path: "../public/font/Poppins/Poppins-Regular.ttf",
-      style: "normal",
-      weight: "400",
+      path: '../public/font/Poppins/Poppins-Regular.ttf',
+      style: 'normal',
+      weight: '400',
     },
     {
-      path: "../public/font/Poppins/Poppins-SemiBold.ttf",
-      style: "normal",
-      weight: "600",
+      path: '../public/font/Poppins/Poppins-SemiBold.ttf',
+      style: 'normal',
+      weight: '600',
     },
     {
-      path: "../public/font/Poppins/Poppins-Thin.ttf",
-      style: "normal",
-      weight: "100",
+      path: '../public/font/Poppins/Poppins-Thin.ttf',
+      style: 'normal',
+      weight: '100',
     },
   ],
-});
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -74,9 +75,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <main className={poppins.className}>
           <Component {...pageProps} />
         </main>
+        <TabsLayout />
       </Provider>
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
