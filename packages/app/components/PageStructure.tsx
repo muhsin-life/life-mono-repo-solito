@@ -3,7 +3,6 @@ import MaxWidthWrapper from './MaxWidthWrapper'
 import { DynamicGrid } from './DynamicGrid'
 import { DynamicSliderGrid } from './DynamicSliderGrid'
 import { Platform } from 'react-native'
-import { ReactNode } from 'react'
 
 interface PageStructureProps {
   content: Content

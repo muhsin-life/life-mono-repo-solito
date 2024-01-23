@@ -33,6 +33,7 @@
     "clsx": "^2.1.0",
     "react-native-web-swiper": "^2.2.4",
     "tailwind-merge": "^2.2.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "use-debounce": "^10.0.0"
   }
 }

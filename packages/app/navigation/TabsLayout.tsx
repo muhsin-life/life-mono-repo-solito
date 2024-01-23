@@ -1,14 +1,15 @@
 import { Tabs } from 'expo-router'
-import { View } from 'app/design/view'
 import { Text } from 'app/design/typography'
 import { Icons } from 'app/components/Icons'
+import { View } from 'app/design/view'
+import { themeColors } from 'app/config'
 
 export default function TabsLayout() {
   const TabItems = [
     {
       title: 'Home',
       route: 'index',
-      Icon: Icons.userIcon,
+      Icon: Icons.homeIcon,
     },
     {
       title: 'Category',
@@ -22,72 +23,54 @@ export default function TabsLayout() {
     },
     {
       title: 'Profile',
+      route: 'dashboard',
       Icon: Icons.userIcon,
     },
     {
       title: 'Cart',
+      route: 'cart',
       Icon: Icons.cartIcon,
     },
   ]
 
   return (
-    <Tabs initialRouteName="index">
-      <Tabs.Screen
-        name="index"
-        options={{
-          headerShown: false,
-          title: '',
-          href: '/',
-          tabBarIcon: () => {
-            return (
-              <View
-                style={{
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  marginTop: 17,
-                  backgroundColor: 'transparent',
-                }}
-              >
-                <Icons.userIcon
-                  width={23}
-                  height={23}
-                  color={'red'}
-                  fill={'red'}
-                />
-                <Text className="text-xs">Home</Text>
-              </View>
-            )
-          },
-        }}
-      />
-      <Tabs.Screen
-        name="category-menu"
-        options={{
-          headerShown: false,
-          title: '',
-          href: '/category-menu',
-          tabBarIcon: () => {
-            return (
-              <View
-                style={{
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  marginTop: 17,
-                  backgroundColor: 'transparent',
-                }}
-              >
-                <Icons.categoryMenu
-                  width={20}
-                  height={20}
-                  color={'red'}
-                  fill={'red'}
-                />
-                <Text className="text-xs">Category</Text>
-              </View>
-            )
-          },
-        }}
-      />
+    <Tabs
+      initialRouteName="index"
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          alignItems: 'center',
+          paddingTop: 12,
+        },
+      }}
+    >
+      {TabItems.map((tab) => (
+        <Tabs.Screen
+          key={tab.title}
+          name={tab.route}
+          options={{
+            headerShown: false,
+            title: '',
+            href: `/${tab.route !== 'index' ? tab.route : ''}`,
+            tabBarIcon: ({ focused }) => {
+              return (
+                <View className="flex-col items-center">
+                  <tab.Icon
+                    width={23}
+                    height={23}
+                    color={
+                      focused
+                        ? themeColors.secondary.DEFAULT
+                        : themeColors.muted.foreground
+                    }
+                  />
+                  <Text className="text-xs">{tab.title}</Text>
+                </View>
+              )
+            },
+          }}
+        />
+      ))}
     </Tabs>
   )
 }

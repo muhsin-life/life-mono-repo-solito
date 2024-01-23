@@ -504,3 +504,28 @@ export const ADDRESS_TYPES = [
     title: 'Other',
   },
 ]
+
+
+
+export const themeColors = {
+  primary: {
+    DEFAULT: '#2563eb',
+    foreground: '#F1F5F9',
+  },
+  secondary: {
+    DEFAULT: '#3b82f6',
+    foreground: '#0F172A',
+  },
+  muted: {
+    DEFAULT: '#F1F5F9',
+    foreground: '#64748B',
+  },
+  accent: {
+    DEFAULT: '#F1F5F9',
+    foreground: '#0F172A',
+  },
+  popover: {
+    DEFAULT: '#FFFFFF',
+    foreground: '#020817',
+  },
+}

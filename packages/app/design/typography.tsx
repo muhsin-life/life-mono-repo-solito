@@ -18,6 +18,26 @@ H1.defaultProps = {
   accessibilityLevel: 1,
   accessibilityRole: 'header',
 }
+export const H2 = styled(NativeText, 'text-2xl font-extrabold ')
+H2.defaultProps = {
+  accessibilityLevel: 2,
+  accessibilityRole: 'header',
+}
+export const H3 = styled(NativeText, 'text-xl font-bold ')
+H3.defaultProps = {
+  accessibilityLevel: 3,
+  accessibilityRole: 'header',
+}
+export const H4 = styled(NativeText, 'text-lg font-bold ')
+H4.defaultProps = {
+  accessibilityLevel: 4,
+  accessibilityRole: 'header',
+}
+export const H5 = styled(NativeText, 'text-lg font-medium my-2')
+H5.defaultProps = {
+  accessibilityLevel: 5,
+  accessibilityRole: 'header',
+}
 
 /**
  * This is a more advanced component with custom styles and per-platform functionality
@@ -29,7 +49,7 @@ export interface AProps extends ComponentProps<typeof Text> {
 
 export const A = forwardRef<NativeText, StyledProps<AProps>>(function A(
   { className = '', href, target, ...props },
-  ref
+  ref,
 ) {
   const nativeAProps = Platform.select<Partial<AProps>>({
     web: {

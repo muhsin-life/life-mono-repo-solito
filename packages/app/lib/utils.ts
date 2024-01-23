@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { Dimensions, Platform, ScaledSize } from 'react-native'
+import { PriceElement } from 'app/types/products'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -27,4 +28,34 @@ export const window: ScaledSize = isWeb
     }
   : Dimensions.get('window')
 
-  
+export const getCountryCodeFromLocale = (locale: locale) => {
+  return locale.split('-')[0]
+}
+
+export const getPriceDataByLocale = (
+  locale: locale,
+  prices: PriceElement[],
+) => {
+  return prices.find(
+    (price) => price.country_code === getCountryCodeFromLocale(locale),
+  )
+}
+
+export function formatPrice(
+  price: number | string,
+  options: {
+    currency?: "SAR" | "AED" | "OMR";
+    notation?: Intl.NumberFormatOptions["notation"];
+  } = {}
+) {
+  const { currency = "AED", notation = "compact" } = options;
+
+  const numericPrice = typeof price === "string" ? parseFloat(price) : price;
+
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    notation,
+    maximumFractionDigits: 2,
+  }).format(numericPrice);
+}
