@@ -19,7 +19,12 @@ export const DynamicGrid = ({
       contentData.section_data_array[0]?.[deviceType].height,
   })
 
-
+  const cols = contentData.settings
+    ? contentData.settings[deviceType].column ?? 1
+    : 1
+  const rows = contentData.settings
+    ? contentData.settings[deviceType].row ?? 1
+    : 1
 
   return (
     contentData.section_data_array && (
@@ -29,11 +34,16 @@ export const DynamicGrid = ({
           'sm:block hidden': deviceType === 'desktop',
         })}
       >
-        <View className="flex-row flex-1">
+        <View className="flex-row flex-1 flex-wrap">
           {contentData.section_data_array.map(
             (content) =>
               content[deviceType].image_url && (
-                <View key={content.id} className="flex-col flex-1">
+                <View
+                  key={content.id}
+                  style={{
+                    width: `${100 / cols}%`,
+                  }}
+                >
                   <GridImage
                     sectionData={content}
                     deviceType={deviceType}

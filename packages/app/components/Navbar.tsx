@@ -5,7 +5,6 @@ import { SolitoImage } from 'solito/image'
 import * as Icon from 'react-native-feather'
 import { Link } from 'solito/link'
 import { useRouter } from 'solito/router'
-import { isWeb } from 'app/lib/utils'
 import { NativeSyntheticEvent } from 'react-native'
 import { NativeTouchEvent } from 'react-native'
 

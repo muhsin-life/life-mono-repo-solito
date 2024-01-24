@@ -1,11 +1,26 @@
-import { Tabs } from 'expo-router'
 import { Text } from 'app/design/typography'
 import { Icons } from 'app/components/Icons'
 import { View } from 'app/design/view'
 import { themeColors } from 'app/config'
+import { Tabs } from 'expo-router'
+import { SvgProps } from 'react-native-svg'
 
 export default function TabsLayout() {
-  const TabItems = [
+  type TTab =
+    | 'index'
+    | 'category-menu'
+    | 'prescription-upload'
+    | 'dashboard'
+    | 'cart'
+    | '[pages]/index'
+
+  interface TTabItem {
+    title: string
+    route: TTab
+    Icon: (SvgProps) => JSX.Element
+  }
+
+  const TabItems: TTabItem[] = [
     {
       title: 'Home',
       route: 'index',
@@ -31,7 +46,23 @@ export default function TabsLayout() {
       route: 'cart',
       Icon: Icons.cartIcon,
     },
+    {
+      title: '',
+      route: '[pages]/index',
+      Icon: Icons.cartIcon,
+    },
   ]
+
+  const getTabRoute = (route: TTab) => {
+    switch (route) {
+      case 'index':
+        return '/'
+      case '[pages]/index':
+        return null
+      default:
+        return `/${route}`
+    }
+  }
 
   return (
     <Tabs
@@ -51,7 +82,7 @@ export default function TabsLayout() {
           options={{
             headerShown: false,
             title: '',
-            href: `/${tab.route !== 'index' ? tab.route : ''}`,
+            href: getTabRoute(tab.route),
             tabBarIcon: ({ focused }) => {
               return (
                 <View className="flex-col items-center">

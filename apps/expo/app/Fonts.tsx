@@ -13,6 +13,5 @@ export function Font({ children }) {
     ['Poppins-Thin']: require('../../next/public/font/Poppins/Poppins-Thin.ttf'),
   })
 
-
   return <>{children}</>
 }

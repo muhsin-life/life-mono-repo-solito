@@ -3,6 +3,19 @@
 
 const theme = {
   extend: {
+    fontFamily: {
+      poppins: [
+        'Poppins-Black',
+        'Poppins-Bold',
+        'Poppins-ExtraBold',
+        'Poppins-ExtraLight',
+        'Poppins-Light',
+        'Poppins-Medium',
+        'Poppins-Regular',
+        'Poppins-Semibold',
+        'Poppins-Thin',
+      ],
+    },
     colors: {
       primary: {
         DEFAULT: '#2563eb',

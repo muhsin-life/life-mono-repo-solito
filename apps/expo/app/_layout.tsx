@@ -1,6 +1,6 @@
 import { Provider } from 'app/provider/index'
-import { Stack } from 'expo-router'
 import { Font } from './Fonts'
+import { Stack } from 'expo-router'
 
 export default function Root() {
   return (

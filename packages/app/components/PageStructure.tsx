@@ -3,6 +3,9 @@ import MaxWidthWrapper from './MaxWidthWrapper'
 import { DynamicGrid } from './DynamicGrid'
 import { DynamicSliderGrid } from './DynamicSliderGrid'
 import { Platform } from 'react-native'
+import { View } from 'app/design/view'
+import { useProducts } from 'app/hooks/useData'
+import { ProductGrid } from './ProductsGrid'
 
 interface PageStructureProps {
   content: Content
@@ -36,7 +39,29 @@ export const PageStructure = ({ content }: PageStructureProps) => {
             </MaxWidthWrapper>
           )
         })
+      case 'product_grid':
+        const title =
+          content?.settings?.show_section_title ?? true
+            ? content.section_title
+            : null
+        const type_value = content.section_data_object?.type_value
+        const type_key = content.section_data_object?.type_key
+        const slug = content.section_data_object?.slug
 
+        return (
+          <ProductGrid
+            key={`${content.order_id}`}
+            supportedDeviceTypes={supportedDeviceTypes}
+            productGridProps={{
+              title,
+              slug,
+              type_key,
+              type_value,
+            }}
+          />
+        )
+      case 'gap':
+        return <View className="w-full h-2 flex-row flex-1" />
       default:
         return null
     }

@@ -1,9 +1,14 @@
-import { Skeleton } from 'app/components/ui/Skeleton'
+import {
+  BrandsSkeleton,
+  CategoriesSkeleton,
+  SearchProductsSkeleton,
+  TrendingSkeleton,
+} from 'app/components/Skeletons'
 import { themeColors } from 'app/config'
 import { TextInput } from 'app/design/input'
 import { ScrollView } from 'app/design/scrollView'
 import { Pressable } from 'app/design/touchableOpacity'
-import { H1, H5, Text } from 'app/design/typography'
+import { H5, Text } from 'app/design/typography'
 import { View } from 'app/design/view'
 import { useSearchSuggestion } from 'app/hooks/useData'
 import { formatPrice, getPriceDataByLocale } from 'app/lib/utils'
@@ -11,6 +16,7 @@ import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { useEffect, useState } from 'react'
 import * as Icon from 'react-native-feather'
 import { SolitoImage } from 'solito/image'
+import { useRouter } from 'solito/router'
 import { useDebouncedCallback } from 'use-debounce'
 
 export function SearchScreen() {
@@ -19,6 +25,8 @@ export function SearchScreen() {
   const [loading, setLoading] = useState(false)
 
   const { data, refetch } = useSearchSuggestion(searchQuery, 'ae-en')
+
+  const { back } = useRouter()
 
   const getSearchData = useDebouncedCallback(async () => {
     await refetch()
@@ -37,7 +45,10 @@ export function SearchScreen() {
         style={safeareaInsets}
       >
         <View className="flex-row items-center border-b border-muted pb-2">
-          <Pressable className="mr-4 w-10 h-10 bg-muted rounded-lg items-center justify-center">
+          <Pressable
+            onPress={() => back()}
+            className="mr-4 w-10 h-10 bg-muted rounded-lg items-center justify-center"
+          >
             <Icon.ArrowLeft
               width={18}
               height={18}
@@ -66,14 +77,7 @@ export function SearchScreen() {
             <H5 className="text-base">Trending Searches</H5>
             {loading ? (
               <View className=" ">
-                <View className="flex-1 flex-row flex-wrap space-x-2">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <Skeleton
-                      className="flex-col flex-1 h-7 "
-                      key={`skelton-${i}`}
-                    />
-                  ))}
-                </View>
+                <TrendingSkeleton total={4} />
               </View>
             ) : (
               data?.results[1] && (
@@ -107,48 +111,38 @@ export function SearchScreen() {
             <H5 className="text-base">Trending Categories</H5>
             {loading ? (
               <View className=" ">
-                <View className="flex-1 flex-row flex-wrap space-x-2">
-                  {Array.from({ length: 3 }).map((_, i) => (
-                    <Skeleton
-                      className="flex-col flex-1 h-14 "
-                      key={`skelton-${i}`}
-                    />
-                  ))}
-                </View>
+                <CategoriesSkeleton total={4} />
               </View>
             ) : (
               data?.results[3] && (
                 <View className=" ">
-                  <ScrollView
-                    className="overflow-visible"
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                  >
+                  <View className="flex-row flex-1 flex-wrap items-start justify-between">
                     {data?.results[3].hits.map((suggestion) => (
-                      <Pressable
-                        href={`/brand/${suggestion.slug}`}
-                        key={suggestion._id}
-                        className="bg-white h-14 mr-2  items-center  flex-row p-1 px-3 rounded-lg font-medium border border-muted"
-                      >
-                        <SolitoImage
-                          src={
-                            suggestion.images?.logo ??
-                            '/images/default-product-image.png'
-                          }
-                          style={{
-                            borderRadius: 9999,
-                            aspectRatio: 1,
-                          }}
-                          width={40}
-                          height={40}
-                          alt={suggestion.name || 'cat-image'}
-                        />
-                        <Text className="ml-2 capitalize text-xs font-medium">
-                          {suggestion.name}
-                        </Text>
-                      </Pressable>
+                      <View className="w-[49%] h-16 " key={suggestion._id}>
+                        <Pressable
+                          href={`/brand/${suggestion.slug}`}
+                          className="bg-white flex-1 items-center mb-2  flex-row p-1 px-3 rounded-lg font-medium border border-muted"
+                        >
+                          <SolitoImage
+                            src={
+                              suggestion.images?.logo ??
+                              '/images/default-product-image.png'
+                            }
+                            style={{
+                              borderRadius: 9999,
+                              aspectRatio: 1,
+                            }}
+                            width={40}
+                            height={40}
+                            alt={suggestion.name || 'cat-image'}
+                          />
+                          <Text className="ml-2 capitalize text-xs font-medium ">
+                            {suggestion.name}
+                          </Text>
+                        </Pressable>
+                      </View>
                     ))}
-                  </ScrollView>
+                  </View>
                 </View>
               )
             )}
@@ -157,14 +151,7 @@ export function SearchScreen() {
             <H5 className="text-base">Trending Brands</H5>
             {loading ? (
               <View className=" ">
-                <View className="flex-1 flex-row flex-wrap space-x-2">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <Skeleton
-                      className="flex-col flex-1 h-12 "
-                      key={`skelton-${i}`}
-                    />
-                  ))}
-                </View>
+                <BrandsSkeleton total={4} />
               </View>
             ) : (
               data?.results[2] && (
@@ -203,19 +190,7 @@ export function SearchScreen() {
           <View className="flex-col mt-1.5">
             <H5 className="text-base">Products</H5>
             {loading ? (
-              <View className=" flex-col flex-1 space-y-2">
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <View className="flex-1 flex-row " key={`skelton-${i}`}>
-                    <View className="flex-row flex-1 h-16 bg-white border border-muted p-1">
-                      <Skeleton className="w-[50px] h-[50px] rounded-lg" />
-                      <View className="flex-col space-y-1 ml-2 flex-1 justify-between py-1">
-                        <Skeleton className="flex-col  h-3 rounded" />
-                        <Skeleton className="flex-col  h-3 rounded w-1/2" />
-                      </View>
-                    </View>
-                  </View>
-                ))}
-              </View>
+              <SearchProductsSkeleton total={4} />
             ) : (
               data?.results[0] && (
                 <ScrollView className="overflow-visible">

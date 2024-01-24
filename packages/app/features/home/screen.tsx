@@ -12,7 +12,7 @@ interface HomePageProps {
 export function HomeScreen({ data }: HomePageProps) {
   const safeareaInsets = useSafeArea()
   return (
-    <View className={'flex-1 bg-white'}>
+    <View className={'flex-1 bg-white '}>
       <View className={'flex-1 bg-white'} style={safeareaInsets}>
         <Navbar />
         <ScrollView
