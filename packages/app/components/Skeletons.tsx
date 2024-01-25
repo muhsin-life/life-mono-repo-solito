@@ -55,7 +55,7 @@ const SearchProductsSkeleton = ({ total }: SkeletonProps) => {
 
 const ProductsSliderSkeleton = () => {
   return (
-    <View className=" w-40 h-64 mr-3">
+    <View className=" w-36 h-60 mr-3">
       <View className="relative bg-zinc-100 aspect-square w-full overflow-hidden rounded-xl">
         <Skeleton className="h-full w-full" />
       </View>
