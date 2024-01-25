@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "ad46233a-1f9c-4b97-8e63-9513993ef8b4"
+      }
+    },
+    "android": {
+      "package": "com.muhsinlife.solitowithtailwind"
+    }
+  }
+}

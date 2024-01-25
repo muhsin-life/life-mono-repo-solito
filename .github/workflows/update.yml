@@ -1,0 +1,3 @@
+- name: Publish update
+  run: eas update --auto
+  working-directory: ./apps/expo
