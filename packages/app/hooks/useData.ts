@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import getPageData from 'app/helpers/getPageData'
 import getProducts from 'app/helpers/getProducts'
+import getProductListing from 'app/helpers/getProductsListing'
 import { PageProps } from 'app/types/page'
 import { ProductProps } from 'app/types/products'
 import { SearchSuggestionProps } from 'app/types/searchSuggestions'
 import axios, { AxiosRequestConfig } from 'axios'
-import { useRouter } from 'solito/router'
 
 export const useProducts = (type_key: string, slug: string, locale: locale) => {
   return useQuery({
@@ -75,5 +75,15 @@ export const useSearchSuggestion = (query: string, locale: locale) => {
       return data as SearchSuggestionProps
     },
     staleTime: 1000,
+  })
+}
+
+export const useProductListing = (filters: string, locale: locale) => {
+  return useQuery({
+    queryKey: ['get-product-listing', filters],
+    queryFn: async () => {
+      const data = await getProductListing({ locale, filters })
+      return data as ProductProps
+    },
   })
 }

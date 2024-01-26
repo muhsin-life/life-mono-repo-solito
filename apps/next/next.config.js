@@ -16,7 +16,6 @@ const nextConfig = {
     ],
   },
   transpilePackages: [
-    'expo-image',
     'react-native',
     'react-native-web',
     'solito',

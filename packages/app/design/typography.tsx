@@ -3,7 +3,7 @@ import { Text as NativeText, Platform, Linking, TextStyle } from 'react-native'
 import { styled, StyledProps } from 'nativewind'
 import { TextLink as SolitoTextLink } from 'solito/link'
 
-export const Text = styled(NativeText, "font-poppins")
+export const Text = styled(NativeText)
 
 /**
  * You can use this pattern to create components with default styles
@@ -33,7 +33,7 @@ H4.defaultProps = {
   accessibilityLevel: 4,
   accessibilityRole: 'header',
 }
-export const H5 = styled(NativeText, 'text-lg font-medium my-2 font-poppins')
+export const H5 = styled(NativeText, 'text-lg font-medium my-2 ')
 H5.defaultProps = {
   accessibilityLevel: 5,
   accessibilityRole: 'header',

@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "@babel/core": "^7.20.0",
     "@types/react": "^18.2.21",
     "@types/react-native": "^0.72.2",
     "eslint": "^8.21.0",
@@ -16,7 +17,10 @@
   },
   "scripts": {
     "native": "cd apps/expo && yarn start",
-    "web": "cd apps/next && yarn next"
+    "web": "cd apps/next && yarn next",
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "resolutions": {
     "metro": "~0.76.7",
@@ -26,16 +30,26 @@
     "**/expo-router",
     "**/expo-router/**"
   ],
-  "packageManager": "yarn@3.4.1",
+  "packageManager": "yarn@1.22.21",
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.21.0",
     "@tanstack/react-query": "^5.17.15",
     "axios": "^1.6.5",
     "clsx": "^2.1.0",
     "eas-cli": "^7.0.0",
+    "expo": "~49.0.18",
+    "expo-image": "^1.10.5",
+    "expo-splash-screen": "~0.20.5",
+    "expo-status-bar": "~1.6.0",
     "global": "^4.4.0",
+    "querystring": "^0.2.1",
+    "react": "18.2.0",
+    "react-native": "0.72.6",
     "react-native-web-swiper": "^2.2.4",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
-    "use-debounce": "^10.0.0"
-  }
+    "use-debounce": "^10.0.0",
+    "zustand": "^4.5.0"
+  },
+  "version": "1.0.0"
 }

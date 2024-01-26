@@ -13,6 +13,7 @@ export default function TabsLayout() {
     | 'dashboard'
     | 'cart'
     | '[pages]/index'
+    | 'products'
 
   interface TTabItem {
     title: string
@@ -51,6 +52,11 @@ export default function TabsLayout() {
       route: '[pages]/index',
       Icon: Icons.cartIcon,
     },
+    {
+      title: '',
+      route: 'products',
+      Icon: Icons.cartIcon,
+    },
   ]
 
   const getTabRoute = (route: TTab) => {
@@ -58,6 +64,8 @@ export default function TabsLayout() {
       case 'index':
         return '/'
       case '[pages]/index':
+        return null
+      case 'products':
         return null
       default:
         return `/${route}`

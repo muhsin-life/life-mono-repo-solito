@@ -4,6 +4,8 @@ import PagesScreen from 'app/features/pages/screen'
 import { usePagesData } from 'app/hooks/useData'
 import { useLocalSearchParams } from 'expo-router'
 
+
+
 export default function Pages() {
   const { pages } = useLocalSearchParams()
 

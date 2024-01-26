@@ -44,18 +44,54 @@ export const getPriceDataByLocale = (
 export function formatPrice(
   price: number | string,
   options: {
-    currency?: "SAR" | "AED" | "OMR";
-    notation?: Intl.NumberFormatOptions["notation"];
-  } = {}
+    currency?: 'SAR' | 'AED' | 'OMR'
+    notation?: Intl.NumberFormatOptions['notation']
+  } = {},
 ) {
-  const { currency = "AED", notation = "compact" } = options;
+  const { currency = 'AED', notation = 'compact' } = options
 
-  const numericPrice = typeof price === "string" ? parseFloat(price) : price;
+  const numericPrice = typeof price === 'string' ? parseFloat(price) : price
 
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
     currency,
     notation,
     maximumFractionDigits: 2,
-  }).format(numericPrice);
+  }).format(numericPrice)
+}
+
+export const getPayLoadData: (
+  id: string,
+  qty: number,
+  itemLength: number,
+) => PayloadProps = (id, qty, itemLength) => {
+  if (itemLength > 0) {
+    return {
+      action: 'update_items',
+      data: {
+        items: [
+          {
+            id,
+            qty,
+          },
+        ],
+        address_id: null,
+      },
+    }
+  }
+  return {
+    data: {
+      items: [
+        {
+          id,
+          qty,
+        },
+      ],
+      address_id: null,
+    },
+  }
+}
+
+export function truncate(str: string, length: number) {
+  return str.length > length ? `${str.substring(0, length)}...` : str;
 }
